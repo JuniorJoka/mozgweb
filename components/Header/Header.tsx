@@ -1,16 +1,14 @@
 import { HiMenuAlt1, HiOutlinePencil } from 'react-icons/hi';
-import { MdOutlinePerson, MdPerson } from 'react-icons/md';
-import { BsPerson } from 'react-icons/bs';
+import { BsPerson, BsSearch } from 'react-icons/bs';
 import { CgChevronDown } from 'react-icons/cg';
 import React from 'react';
 import Button from '../Button';
-import Dialog from '../Dialog';
 
-const Header = () => {
+const Header = ({ user }) => {
   return (
     <header
       role="header"
-      className="fixed h-10 w-full flex justify-between items-center bg-slate-900 md:bg-white px-5 py-8 md:border-b-[1px] md:border-black md:border-opacity-20 "
+      className="fixed h-10 w-full flex justify-between items-center bg-slate-900 md:bg-white px-5 py-8 md:border-b-[1px] md:border-black md:border-opacity-20 z-50"
     >
       <div className="flex items-center">
         <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
@@ -27,13 +25,36 @@ const Header = () => {
         </svg>
         <h1 className="text-white text-xl font-extrabold md:text-black">Mozg</h1>
       </div>
+      <div className="relative">
+        <input
+          type="text"
+          className="bg-blue-50 w-[30rem] h-10 rounded-md pl-10 focus:outline-none pr-4"
+          placeholder="Search Mozg"
+        />
+        <BsSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
+      </div>
       <div className="hidden md:flex space-x-2">
-        <Button label="log in" outlined />
-        <Button label="Sign up" />
-        <button type="button" className="hover:shadow-border py-1 px-5 flex items-center rounded">
-          <BsPerson className="w-7 h-7" />
-          <CgChevronDown />
-        </button>
+        {user ? (
+          <button
+            type="button"
+            className="hover:shadow-border py-1 px-5 flex w-44 h-10 items-center justify-between rounded"
+          >
+            <p className="w-36 truncate flex justify-start">{user.username}</p>
+            <CgChevronDown />
+          </button>
+        ) : (
+          <>
+            <Button label="log in" outlined />
+            <Button label="Sign up" />
+            <button
+              type="button"
+              className="hover:shadow-border py-1 px-5 flex items-center rounded"
+            >
+              <BsPerson className="w-7 h-7" />
+              <CgChevronDown />
+            </button>
+          </>
+        )}
       </div>
       <div className="md:hidden space-x-2">
         <button type="button">
