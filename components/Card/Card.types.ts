@@ -4,4 +4,5 @@ export interface CardProps {
   time: string;
   commentCount: number;
   voteCount: number;
+  author: string;
 }

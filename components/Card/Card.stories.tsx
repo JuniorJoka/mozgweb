@@ -17,4 +17,5 @@ Default.args = {
   voteCount: 10,
   commentCount: 2,
   time: '2h',
+  author: 'John',
 };

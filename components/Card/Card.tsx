@@ -9,7 +9,7 @@ import {
 import { CardProps } from './Card.types';
 
 const Card = (props: CardProps) => {
-  const { time, community, commentCount, voteCount, title } = props;
+  const { time, community, commentCount, voteCount, title, author } = props;
   return (
     <div className="flex rounded  max-w-[640px] text-gray-500 shadow-border">
       <div className="hidden md:block bg-blue-50 bg-opacity-50 py-2 px-3 ">
@@ -28,7 +28,7 @@ const Card = (props: CardProps) => {
           <div className="flex space-x-2">
             <div className="rounded-full w-7 h-7 bg-blue-50" />
             <p className="font-semibold text-sm text-black">m/{community}</p>
-            <p>Posted by u/{'joka'}</p>
+            <p>Posted by u/{author}</p>
             <p>{time}</p>
           </div>
           <div>
