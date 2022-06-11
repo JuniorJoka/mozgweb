@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   HiOutlineChatAlt2,
   HiOutlineShare,
