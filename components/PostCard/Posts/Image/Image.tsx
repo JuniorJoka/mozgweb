@@ -1,10 +1,26 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { CgImage } from 'react-icons/cg';
 
 const postType = 'image';
 
 const Image = () => {
   const [title, setTitle] = useState('');
+
+  const [image, setImage] = useState<File>();
+  const [preview, setPreview] = useState<string>();
+  const fileInputRef = useRef<HTMLInputElement>();
+
+  useEffect(() => {
+    if (image) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPreview(reader.result as string);
+      };
+      reader.readAsDataURL(image);
+    } else {
+      setPreview(null);
+    }
+  }, [image]);
 
   return (
     <>
@@ -26,6 +42,31 @@ const Image = () => {
       </div>
 
       <div className="h-32 m-4 border-dashed border-2 rounded bg-gray-50"></div>
+
+      {preview ? (
+        <img
+          src={preview}
+          style={{ objectFit: 'cover' }}
+          onClick={() => {
+            setImage(null);
+          }}
+        />
+      ) : null}
+      <input
+        type="file"
+        name="file"
+        id="file"
+        accept="image/*"
+        onChange={(event) => {
+          const file = event.target.files[0];
+          if (file && file.type.substr(0, 5) === 'image') {
+            setImage(file);
+          } else {
+            setImage(null);
+          }
+        }}
+        multiple
+      />
     </>
   );
 };
