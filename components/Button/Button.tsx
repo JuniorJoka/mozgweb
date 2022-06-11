@@ -6,6 +6,7 @@ const Button = ({
   outlined = false,
   extended = false,
   coloredOutline = false,
+  ...props
 }: ButtonProps) => {
   return (
     <button
@@ -17,6 +18,7 @@ const Button = ({
             : 'shadow-border text-blue-400'
           : 'bg-blue-400 text-white'
       } ${extended ? 'w-full' : ''}`}
+      {...props}
     >
       {label}
     </button>
