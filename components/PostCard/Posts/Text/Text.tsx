@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { CgTranscript } from 'react-icons/cg';
+import RichTextEditor from '../../../RichTextEditor';
 
 const postType = 'text';
 
@@ -25,12 +26,9 @@ const Text = () => {
         </div>
       </div>
       <div className="m-4 relative">
-        <textarea
-          name="content"
-          id="content"
-          rows={10}
-          className="shadow-border block w-full rounded p-2"
-        />
+        <div className="shadow-border block w-full rounded p-2 min-h-min">
+          <RichTextEditor />
+        </div>
       </div>
     </>
   );
